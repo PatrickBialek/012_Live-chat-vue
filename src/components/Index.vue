@@ -6,6 +6,7 @@
         <form class="card-user-info" @submit.prevent="openChat()">
           <label for="user-name">You name:</label>
           <input class="form-control" type="text" name="user-name" v-model="name">
+          <p class="text-danger" v-if="feedback">{{ feedback }}</p>
           <button class="btn btn-info">Visit Chat</button>
         </form>
       </div>
@@ -18,11 +19,19 @@ export default {
   name: "Index",
   data() {
     return {
-      name: null
+      name: null,
+      feedback: null
     };
   },
   methods: {
-    openChat() {}
+    openChat() {
+      if (this.name) {
+        this.feedback = null;
+        this.$router.push({ name: "Chat", params: { name: this.name } });
+      } else {
+        this.feedback = "You must put name to join";
+      }
+    }
   }
 };
 </script>
