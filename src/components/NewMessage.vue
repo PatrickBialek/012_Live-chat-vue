@@ -1,7 +1,8 @@
 <template>
-  <form class="form-group" @submit.prevent="addMessage()">
-    <label for="new-message">New message (press Enter to send):</label>
+  <form class="form-group chat-form">
+    <label for="new-message">New message:</label>
     <input class="form-control" type="text" name="new-message" v-model="newMessage">
+    <button class="btn btn-info chat-btn" @click.prevent="addMessage()">Send Message</button>
     <p v-if="feedback" class="text-danger">{{ feedback }}</p>
   </form>
 </template>
@@ -39,3 +40,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.chat-form {
+  margin-top: 20px;
+}
+.chat-btn {
+  margin-top: 10px;
+}
+</style>
+

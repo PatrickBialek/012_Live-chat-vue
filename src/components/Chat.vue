@@ -3,7 +3,7 @@
     <h2 class="text-center">Chat</h2>
     <div class="card">
       <div class="card-body">
-        <ul class="chat-messages">
+        <ul class="chat-messages" v-chat-scroll>
           <li v-for="message in messages" :key="message.id">
             <span class="text-info chat-author">{{ message.name }}</span>
             <span class="text-dark chat-text">{{ message.content }}</span>
@@ -63,6 +63,17 @@ export default {
 .chat-messages {
   margin: 0;
   padding: 0;
+  max-height: 400px;
+  overflow: auto;
+}
+.chat-messages::-webkit-scrollbar {
+  width: 3px;
+}
+.chat-messages::-webkit-scrollbar-track {
+  background: #ddd;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #aaa;
 }
 .chat-messages li {
   list-style-type: none;
@@ -80,6 +91,14 @@ export default {
 @media screen and (min-width: 600px) {
   .card {
     width: 500px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .chat-messages {
+    max-height: 300px;
+  }
+  .card {
+    width: 100%;
   }
 }
 </style>
